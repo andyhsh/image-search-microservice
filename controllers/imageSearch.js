@@ -12,7 +12,15 @@ const fetchImages = (req, res) => {
     .get(`${path}${req.params.id}&count=${count}&offset=${offset}`)
     .set('Ocp-Apim-Subscription-Key', process.env.AZURE_API_KEY)
     .then(imagesJson => {
-      res.send(JSON.parse(imagesJson.text));
+      const parsedJson = JSON.parse(imagesJson.text);
+      const resultJson = parsedJson.value.map(image => {
+        return {
+          url: image.contentUrl,
+          snippet: image.name,
+          thumbnail: image.thumbnailUrl
+        };
+      });
+      res.json(resultJson);
     })
     .catch(err => {
       throw err;
