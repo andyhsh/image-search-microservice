@@ -16,5 +16,9 @@ mongoose.connection.once('open', () => {
 });
 
 app.use('/api', imageSearch);
+app.use('/', (req, res) => {
+  const url = `${req.protocol}://${req.headers.host}`;
+  res.render('index', { url });
+});
 
 module.exports = app;
