@@ -9,6 +9,7 @@
   "author": "Andy Ho",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "ejs": "^2.5.8",
     "express": "^4.16.3",
     "mongoose": "^5.0.12",
